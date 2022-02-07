@@ -50,7 +50,7 @@ public class CafeJava {
         } else {
             System.out.println(customer2 + pendingMessage);
         }
-
+        
         //4. Jimmy was charged for coffee but ordered latte, tem him new total
         System.out.println(customer3 + readyMessage);
         System.out.println(displayTotalMessage + (lattePrice - dripCoffeePrice));

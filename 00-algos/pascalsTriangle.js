@@ -18,7 +18,7 @@ function generate(numRows) {
         let newRow = [];
         for (let j = 0; j <= i; j++) {
             // The first or last value of the row will always be 1
-            if (j == 0 || j == i) {
+            if (j === 0 || j == i) {
                 newRow.push(1);
             }
             else {

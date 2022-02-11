@@ -8,11 +8,11 @@
 		<version>2.6.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.smart.firstspring</groupId>
-	<artifactId>firstspring</artifactId>
+	<groupId>com.smart.hoppersreceipt</groupId>
+	<artifactId>hoppersreceipt</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>firstspring</name>
-	<description>First spring boot project (hello word?)</description>
+	<name>hoppersreceipt</name>
+	<description>Hoppers Receipt Practice Assignment</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -24,20 +24,22 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.tomcat.embed</groupId>
-			<artifactId>tomcat-embed-jasper</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
 		</dependency>
 	</dependencies>
 

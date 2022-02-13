@@ -16,8 +16,10 @@
 
 </head>
 <body>
+<div class="container d-flex flex-column">
 	<h1>You have visited <a href="http://localhost:8080">http://localhost:8080</a> ${count} times</h1>
-	<p><a href="http://localhost:8080">Test another visit?</a></p>
+	<p><a href="/">Test another visit?</a></p>
+</div>
 
 </body>
 </html>

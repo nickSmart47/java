@@ -16,7 +16,15 @@
 
 </head>
 <body>
+<div class = "container">
 	<h1>Welcome User!</h1>
-	<a href="http://localhost:8080/counter">Go to counter for testing</a>
+	<div class="d-flex flex-column gap-3">
+		<a href="counter">Go to counter for testing</a>
+		<a href="counterplustwo">Click here to
+			increase counter by 2!</a>
+			<a href="/reset">Reset counter</a>
+	</div>
+
+</div>
 </body>
 </html>

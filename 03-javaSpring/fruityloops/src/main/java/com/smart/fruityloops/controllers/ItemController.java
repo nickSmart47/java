@@ -20,15 +20,11 @@ public class ItemController {
      fruits.add(new Item("Mango", 2.0));
      fruits.add(new Item("Goji Berries", 4.0));
      fruits.add(new Item("Guava", .75));
+     fruits.add(new Item("Strawberry", 2.75));
      
      // Add fruits your view model here
      
      model.addAttribute("fruits", fruits);
-//     System.out.println(fruits);
-//     for (Item fruit: fruits) {
-//    	 System.out.println(fruit.getName());
-//     }
-//     System.out.println(model);
      
      return "index.jsp";
  }

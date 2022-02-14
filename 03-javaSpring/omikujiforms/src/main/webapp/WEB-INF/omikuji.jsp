@@ -21,7 +21,7 @@
 			class="d-flex flex-column justify-content-center align-items-center"
 			action="/omikuji/send">
 			<h1>Here's your Omikuji!</h1>
-			<div class="bg-primary border">
+			<div class="bg-primary border text-light p-5 m-2">
 				<p>In ${number} years, you will live in ${city} with ${person} as
 					your roommate, ${profession} for a living.</p>
 				<p>The next time you see a ${livingThing}, you will have good

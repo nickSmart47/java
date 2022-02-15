@@ -50,6 +50,14 @@
 					<button class="btn btn-warning">Find Gold!</button>
 				</form>
 			</div>
+			<div class="border border-warning p-3">
+				<h2>Spa</h2>
+				<p>(takes 5-20 gold)</p>
+				<form action="/gold/find" method="post">
+					<input type="hidden" name="spa" value="spa" />
+					<button class="btn btn-warning">Find Gold!</button>
+				</form>
+			</div>
 
 		</div>
 		<h3 class="m-3">Activities:</h3>

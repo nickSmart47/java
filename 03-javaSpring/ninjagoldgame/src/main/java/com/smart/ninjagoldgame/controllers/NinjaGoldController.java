@@ -40,7 +40,8 @@ public class NinjaGoldController {
 			@RequestParam(name = "farm", required = false) String farm,
 			@RequestParam(name = "cave", required = false) String cave,
 			@RequestParam(name = "house", required = false) String house,
-			@RequestParam(name = "casino", required = false) String casino) {
+			@RequestParam(name = "casino", required = false) String casino,
+			@RequestParam(name = "spa", required = false) String spa) {
 
 		Random rand = new Random();
 
@@ -59,6 +60,21 @@ public class NinjaGoldController {
 			newMessages.add(0, message);
 			session.setAttribute("messages", newMessages);
 
+		} else if (spa != null) {
+			int min = -5;
+			int max = -20;
+			int randomInt = (int) Math.floor(Math.random() * (max - min + 1) + min);
+			session.setAttribute("gold", (Integer) session.getAttribute("gold") + randomInt);
+			Date date = new Date();
+			String dateDisplay = new SimpleDateFormat("EEEE, MMMM d, y, h:mm aa").format(date);
+			session.setAttribute("gold", (Integer) session.getAttribute("gold") + randomInt);
+			randomInt = Math.abs(randomInt);
+			String message = String.format("You entered a spa and lost %s gold. (%s)", randomInt, dateDisplay);
+			ArrayList<String> newMessages = new ArrayList<String>();
+			newMessages = (ArrayList<String>) session.getAttribute("messages");
+			newMessages.add(0, message);
+			session.setAttribute("messages", newMessages);
+			
 		} else if (cave != null) {
 			int min = 5;
 			int max = 10;
@@ -97,7 +113,8 @@ public class NinjaGoldController {
 			session.setAttribute("gold", (Integer) session.getAttribute("gold") + randomInt);
 			if (randomInt > 0) {
 				String earnedOrLost = "earned";
-				String message = String.format("You entered a cave and %s %s gold. (%s)", earnedOrLost, randomInt, dateDisplay);
+				String message = String.format("You entered a cave and %s %s gold. (%s)", earnedOrLost, randomInt,
+						dateDisplay);
 				ArrayList<String> newMessages = new ArrayList<String>();
 				newMessages = (ArrayList<String>) session.getAttribute("messages");
 				newMessages.add(0, message);
@@ -105,20 +122,20 @@ public class NinjaGoldController {
 			} else {
 				String earnedOrLost = "lost";
 				randomInt = Math.abs(randomInt);
-				String message = String.format("You entered a cave and %s %s gold. Ouch! (%s)",  earnedOrLost, randomInt, dateDisplay);
+				String message = String.format("You entered a cave and %s %s gold. Ouch! (%s)", earnedOrLost, randomInt,
+						dateDisplay);
 				ArrayList<String> newMessages = new ArrayList<String>();
 				newMessages = (ArrayList<String>) session.getAttribute("messages");
 				newMessages.add(0, message);
 				session.setAttribute("messages", newMessages);
 			}
-			
-			
+
 //			System.out.println(casino);
 		}
 
 		return "redirect:/gold";
 	}
-	
+
 	@PostMapping("/gold/reset")
 	public String resetGold(HttpSession session) {
 		session.invalidate();

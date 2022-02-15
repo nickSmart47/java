@@ -8088,3 +8088,15 @@ java.lang.InterruptedException
 
 !ENTRY org.eclipse.m2e.logback.appender 4 0 2022-02-14 21:13:09.728
 !MESSAGE Unexpected URLConnection defaultUseCaches enabled
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-02-15 11:18:09.051
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.KOrfwZyG
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-02-15 11:18:09.059
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.KOrfwZyG
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-02-15 11:18:09.065
+!MESSAGE subsribers = {}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-02-15 11:18:09.072
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.KOrfwZyG => OK

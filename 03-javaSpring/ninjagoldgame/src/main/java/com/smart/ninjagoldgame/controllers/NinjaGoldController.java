@@ -118,4 +118,10 @@ public class NinjaGoldController {
 
 		return "redirect:/gold";
 	}
+	
+	@PostMapping("/gold/reset")
+	public String resetGold(HttpSession session) {
+		session.invalidate();
+		return "redirect:/gold";
+	}
 }

@@ -12,7 +12,7 @@
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="container p-2">
+	<div class="container d-flex flex-column  align-items-center justify-content-center p-2">
 		<h1>
 			Your Gold: <span>${gold}</span>
 		</h1>
@@ -53,14 +53,20 @@
 
 		</div>
 		<h3 class="m-3">Activities:</h3>
-		<div style = "width:100%; height:500px; overflow:scroll;" class="border border-success p-5">
-			<ul class = "list-group">
+		<div style="width: 80%; height: 500px; overflow: scroll;"
+			class="border border-success p-5">
+			<ul class="list-group">
 				<c:forEach var="message" items="${messages}">
 					<li class="list-group-item"><c:out value="${message}"></c:out></li>
 				</c:forEach>
 			</ul>
-
 		</div>
+
+		<form action="/gold/reset" class = "m-3" method="post">
+		
+		<input type="submit" class = "btn btn-danger" value="Reset Gold" />
+		</form>
+
 	</div>
 </body>
 </html>

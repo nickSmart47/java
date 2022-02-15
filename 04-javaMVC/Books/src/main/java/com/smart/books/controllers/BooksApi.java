@@ -15,10 +15,6 @@ import com.smart.books.services.BookService;
 public class BooksApi {
 	private final BookService bookService;
 
-//	public BooksApi() {
-//		this.bookService = null;
-//		
-//	}
 	public BooksApi(BookService bookService) {
 		this.bookService = bookService;
 	}
@@ -53,6 +49,13 @@ public class BooksApi {
     		@RequestParam(value="language") String lang,
     		@RequestParam(value="pages") Integer numOfPages) {
         Book book = bookService.updateBook(id, title, desc, lang, numOfPages);
+        
+        // alternate method
+//        Book book = new Book(title, desc, lang, numOfPages);
+//    	  book.setId(id);
+//    	
+//        book = service.updateBook(book);
+        
         return book;
     }
     

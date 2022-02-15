@@ -49,11 +49,35 @@ class SLL {
 
 
     addtoFront(valueInput) {
+        // Create a node with the given value
         let newNode = new Node(valueInput)
-
+        //Have node containing vale point to beginning of the list
         newNode.next = this.head
-
+        //head should point to new node
         this.head = newNode;
+
+    }
+
+    removeFront() {
+
+        // let temp = this.head;
+
+        this.head = this.head.next;
+
+    }
+
+    removeBack() {
+
+        if (this.head.next == null) {
+            this.head = null;
+        }
+        let runner = this.head;
+
+        while (runner.next.next != null) {
+            runner = runner.next //this moves runner to the next node
+        }
+
+        runner.next = null;
 
     }
 
@@ -61,11 +85,17 @@ class SLL {
 
 let sll1 = new SLL()
 
-sll1.addToBack(3)
-sll1.addToBack(12)
-sll1.addToBack(15)
-sll1.addToBack(9)
+sll1.addToBack(3);
+sll1.addToBack(12);
+sll1.addToBack(15);
+sll1.addToBack(9);
 sll1.addtoFront(5);
 
-sll1.display()
+sll1.display();
+sll1.removeFront();
+sll1.display();
+sll1.removeBack();
+sll1.display();
+
+
 // console.log(sll1)

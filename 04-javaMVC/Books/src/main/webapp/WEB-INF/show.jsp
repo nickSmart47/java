@@ -17,7 +17,7 @@
 		<p>Description: ${book.description}</p>
 		<p>Language: ${book.language}</p>
 		<p>Number of Pages: ${book.numberOfPages}</p>
-		
+		<a href="/books">Back to All Books</a>
 	</div>
 </body>
 </html>

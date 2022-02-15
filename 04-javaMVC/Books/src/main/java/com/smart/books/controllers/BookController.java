@@ -1,5 +1,7 @@
 package com.smart.books.controllers;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,4 +26,11 @@ public class BookController {
 		System.out.println(model.getAttribute("book"));
 		return "show.jsp";
 	}
+	
+	@RequestMapping("/books")
+    public String index(Model model) {
+        List<Book> books = bookService.allBooks();
+        model.addAttribute("books", books);
+        return "index.jsp";
+    }
 }

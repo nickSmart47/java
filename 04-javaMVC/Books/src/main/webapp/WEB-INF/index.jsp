@@ -13,5 +13,31 @@
 </head>
 <body>
 
+<div class = "container p-3">
+<h1>All Books</h1>
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Language</th>
+      <th scope="col">Number of Pages</th>
+    </tr>
+  </thead>
+  <tbody>
+  <c:forEach items = "${books}" var="book">
+  
+    <tr>
+      <th scope="row">${book.id}</th>
+      <td><a href="/books/${book.id}">${book.title}</a></td>
+      <td>${book.description}</td>
+      <td>${book.language}</td>
+      <td>${book.language}</td>
+    </tr>
+  </c:forEach>
+  </tbody>
+</table>
+</div>
 </body>
 </html>

@@ -31,8 +31,14 @@ public class NinjaGoldController {
 			Integer gold = (Integer) session.getAttribute("gold");
 		}
 
-		System.out.println(session.getAttribute("messages"));
-		return "index.jsp";
+//		System.out.println(session.getAttribute("messages"));
+
+		if ((int) session.getAttribute("gold") < -500) {
+			return "prison.jsp";
+		} else {
+			return "index.jsp";
+		}
+		
 	}
 
 	@PostMapping("/gold/find")
@@ -74,7 +80,7 @@ public class NinjaGoldController {
 			newMessages = (ArrayList<String>) session.getAttribute("messages");
 			newMessages.add(0, message);
 			session.setAttribute("messages", newMessages);
-			
+
 		} else if (cave != null) {
 			int min = 5;
 			int max = 10;

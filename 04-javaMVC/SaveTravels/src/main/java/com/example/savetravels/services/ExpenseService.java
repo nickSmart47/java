@@ -47,4 +47,10 @@ public class ExpenseService {
 		
 		
 	}
+	
+	public void deleteExpense(Long id) {
+		Expense expenseToDelete = expenseRepository.findById(id).get();
+		
+		expenseRepository.delete(expenseToDelete);
+	}
 }

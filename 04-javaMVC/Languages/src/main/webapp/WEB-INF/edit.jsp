@@ -27,7 +27,13 @@
 		<!-- Beginning of Container -->
 		<div class="d-flex justify-content-between align-items-center">
 		<h1 class = "text-success">Edit Language</h1>
-		<a class = "btn btn-primary" href="/languages">Dashboard</a>
+		<div class="d-flex justify-content-end gap-4">
+			<form action="/languages/${language.id}" method="post">
+			  <input type="hidden" name="_method" value="delete"> <input
+				type="submit" value="Delete" class="btn btn-danger">
+			</form>
+				<a class = "btn btn-primary"href="/languages">Dashboard</a>
+		  </div>
 		</div>
 		<form:form action="/languages/${language.id}" method="put" modelAttribute="language"
 			class="form-group">

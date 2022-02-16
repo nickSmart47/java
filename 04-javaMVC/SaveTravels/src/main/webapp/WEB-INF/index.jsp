@@ -41,19 +41,20 @@
 				<c:forEach items="${expenses}" var="expense">
 
 					<tr>
-						<td><a href="/expenses/${expense.id}" class= "text-warning">${expense.name}</a></td>
+						<td><a href="/expenses/${expense.id}" class="text-warning">${expense.name}</a></td>
 						<td>${expense.vendor}</td>
 						<td>$ ${expense.amount}</td>
-						<td class = "d-flex gap-5"><a href="/expenses/edit/${expense.id}" class = "btn btn-primary">Edit</a>
+						<td class="d-flex gap-5"><a
+							href="/expenses/edit/${expense.id}" class="btn btn-primary">Edit</a>
 							<form action="/expenses/${expense.id}" method="post">
 								<input type="hidden" name="_method" value="delete"> <input
-									type="submit" value="Delete" class = "btn btn-danger">
+									type="submit" value="Delete" class="btn btn-danger">
 							</form></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		<h1 >Add an expense</h1>
+		<h1>Add an expense</h1>
 		<form:form action="/expenses" method="post" modelAttribute="expense"
 			class="form-group">
 			<div class="d-flex flex-column gap-2 text-danger align-items-center">
@@ -81,8 +82,8 @@
 				<form:textarea path="description" class="form-control" />
 			</p>
 			<div class="d-flex justify-content-end">
-			
-			<input type="submit" value="Submit" class="btn btn-primary" />
+
+				<input type="submit" value="Submit" class="btn btn-primary" />
 			</div>
 		</form:form>
 	</div>

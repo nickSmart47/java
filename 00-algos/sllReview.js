@@ -74,11 +74,29 @@ class SLL {
         let runner = this.head;
 
         while (runner.next.next != null) {
-            runner = runner.next //this moves runner to the next node
+            runner = runner.next; //this moves runner to the next node
         }
 
         runner.next = null;
 
+    }
+
+    reverse() {
+        if(this.length <= 1){
+            return this;
+        }
+
+        let prevNode = this.head;
+        let runner = this.head.next;
+        while(runner != null){
+            let nextNode = runner.next;
+            runner.next = prevNode;
+            prevNode = runner;
+            runner = nextNode;
+        }
+        this.head.next = null;
+        this.head = prevNode;
+        return this;
     }
 
 }
@@ -91,10 +109,14 @@ sll1.addToBack(15);
 sll1.addToBack(9);
 sll1.addtoFront(5);
 
-sll1.display();
-sll1.removeFront();
-sll1.display();
-sll1.removeBack();
+// sll1.display();
+// sll1.removeFront();
+// sll1.display();
+// sll1.removeBack();
+// sll1.display();
+
+sll1.reverse();
+
 sll1.display();
 
 

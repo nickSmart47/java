@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -29,7 +29,7 @@ public class Expense {
 	@Size(min = 1, max = 40, message = "Vendor must be between 1-40 characters")
 	private String vendor;
 	@NotNull
-	@Min(value = (long) 0.01, message = "Expense amount must be greater than 0")
+	@DecimalMin(value = "0.01", message = "Expense amount must be greater than 0")
 	private double amount;
 	@NotNull
 	@Size(min = 5, max = 200, message = "Description must be between 5-200 characters")

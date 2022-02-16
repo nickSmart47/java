@@ -26,7 +26,7 @@
 	<div class="container">
 		<!-- Beginning of Container -->
 		<div class="d-flex justify-content-between align-items-center">
-		<h1>Edit Expense</h1>
+		<h1 class = "text-success">Edit Expense</h1>
 		<a href="/expenses">Go back</a>
 		</div>
 		<form:form action="/expenses/${expense.id}" method="put" modelAttribute="expense"
@@ -55,7 +55,7 @@
 				<form:label path="description">Description</form:label>
 				<form:textarea path="description" class="form-control" />
 			</p>
-			<input type="submit" value="Submit" class="btn btn-primary" />
+			<input type="submit" value="Submit" class="btn btn-success" />
 		</form:form>
 	</div>
 	<!-- End of Container -->

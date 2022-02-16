@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.savetravels.models.Expense;
 import com.example.savetravels.repositories.ExpenseRepository;
-import com.smart.books.models.Book;
 
 @Service
 public class ExpenseService {

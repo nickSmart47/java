@@ -58,6 +58,7 @@ class DLL {
             this.tail = newNode;
             this.tail.next = null;
         }
+        return this;
     }
 
     removeFromFront() {
@@ -74,6 +75,7 @@ class DLL {
             this.head = newNode;
             this.head.prev = null;
         }
+        return this;
     }
 
 
@@ -92,28 +94,48 @@ class DLL {
     }
 
 
+    reverse(){
+        let runner = this.head;
+        let temp = null;
+
+        while(runner != null){
+            temp = runner.prev;
+            runner.prev = runner.next;
+            runner.next = temp;
+            runner = runner.prev;
+        }
+
+        if (temp != null) {
+            this.head = temp.prev;
+        }
+    }
+    // reverse(){
+    //     //create a variable that we can use to iterate through the list (runner) and start it at the head 
+    //     let runner = this.head
+    //     //set the head to be where the tail is 
+    //     this.head = this.tail
+    //     //set the tail to point to the runner 
+    //     this.tail = runner
+    //     //While runner is point to the node
+    //     while(runner!= null){
+    //         //create a temp variable pointing to runner.next
+    //         let temp = runner.next
+    //         // set runner.next to equal to runner.prev
+    //         runner.next = runner.prev
+    //         //set runner.prev to equal to temp next
+    //         runner.prev = temp 
+    //         //set runner to equal to the temp next 
+    //         runner = temp
+    //     }
 }
 
 
 let dll1 = new DLL();
-dll1.addToFront(5);
-dll1.addToFront(6);
-dll1.addToFront(7);
-dll1.addToBack(8);
-dll1.addToBack(9);
-dll1.addToBack(10);
-dll1.removeFromBack();
-dll1.removeFromFront();
-dll1.removeFromBack();
-dll1.removeFromBack();
-dll1.removeFromBack();
+dll1.addToFront(5).addToFront(6).addToFront(7).addToBack(2);
+dll1.display();
 
-dll1.removeFromFront();
-
-dll1.removeFromFront();
-
-
-
-
+dll1.reverse();
 
 dll1.display();
+
+// console.log(dll1.length)

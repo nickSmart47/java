@@ -86,6 +86,7 @@ public class HomeController {
 		Long loggedInUserID = (Long) session.getAttribute("loggedInUserID");
 		
 		if (loggedInUserID == null) {
+			
 			return "redirect:/";
 		}
 		User loggedInUser = userServ.findOneUser(loggedInUserID);

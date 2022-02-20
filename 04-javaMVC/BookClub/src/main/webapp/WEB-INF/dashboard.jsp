@@ -46,7 +46,7 @@
 								</tr>
 								<c:forEach items="${books}" var="book">
 									<tr>
-										<c:if test="${book.borrower.getId() != loggedInUserID}">
+										<c:if test="${(book.borrower.getId() != loggedInUserID) && (book.borrower.getId() == null)}">
 
 											<td>${book.id}</td>
 											<td><a href="/books/${book.id}">${book.title}</a></td>
@@ -100,6 +100,31 @@
 												<input type="hidden" name="_method" value="put"> <input
 													type="submit" value="Return" class="btn btn-warning">
 											</form></td>
+										</c:if>
+									</tr>
+									</c:forEach>
+							</table>
+
+
+							<h3>Books Currently Borrowed</h3>
+							<table class="table mt-3">
+								<tr class="table-info">
+									<th>Id</th>
+									<th>Title</th>
+									<th>Author Name</th>
+									<th>Owner</th>
+									<th>Borrower</th>
+
+									</tr>
+									<c:forEach items="${books}" var="book">
+										<tr>
+										<c:if test="${book.borrower.getId() != null}">
+											
+											<td>${book.id}</td>
+											<td><a href="/books/${book.id}">${book.title}</a></td>
+											<td>${book.author}</td>
+											<td>${book.user.userName}</td>
+											<td>${book.borrower.userName}</td>
 										</c:if>
 									</tr>
 									</c:forEach>

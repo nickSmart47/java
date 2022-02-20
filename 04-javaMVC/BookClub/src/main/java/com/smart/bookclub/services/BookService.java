@@ -42,13 +42,11 @@ public class BookService {
 
 		Book updatedBook = bookRepo.findById(id).get();
 
-//		Long borrowerId = book.getBorrower().getId();
-//		Optional<User> borrower = userRepo.findById(borrowerId);
+
 		
 		updatedBook.setTitle(book.getTitle());
 		updatedBook.setAuthor(book.getAuthor());
 		updatedBook.setThoughts(book.getThoughts());
-//		updatedBook.setBorrower(book.getBorrower());
 
 		return bookRepo.save(book);
 	}
@@ -72,7 +70,7 @@ public class BookService {
 
 		User originalOwner = book.getUser();
 
-		book.setBorrower(originalOwner);
+		book.setBorrower(null);
 
 		return bookRepo.save(book);
 	}

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -72,5 +73,29 @@ public class BookController {
 			bookServ.updateBook(book.getId(), book);
 			return "redirect:/home";
 		}
+	}
+
+	@DeleteMapping("/books/{id}")
+	public String destroy(@PathVariable("id") Long id) {
+		bookServ.deleteBook(id);
+		return "redirect:/home";
+	}
+
+	@PutMapping("/books/borrow/{id}")
+	public String borrowBook(Model model, HttpSession session, @PathVariable("id") Long id) {
+		
+		Long borrowerId = (Long) session.getAttribute("loggedInUserID");
+		Book book = bookServ.findBook(id);
+		bookServ.borrowBook(borrowerId, book);
+		return "redirect:/home";
+	}
+	
+	@PutMapping("/books/return/{id}")
+	public String returnBook(Model model, HttpSession session, @PathVariable("id") Long id) {
+		
+		Long borrowerId = (Long) session.getAttribute("loggedInUserID");
+		Book book = bookServ.findBook(id);
+		bookServ.returnBook(borrowerId, book);
+		return "redirect:/home";
 	}
 }

@@ -44,6 +44,10 @@ public class Book {
 	@JoinColumn(name="user_id")
 	private User user;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="borrower_id")
+	private User borrower;
+	
 	public Book() {
 		
 	}
@@ -52,12 +56,13 @@ public class Book {
 	
 	public Book(@NotEmpty(message = "Book Title is required!") String title,
 			@NotEmpty(message = "Author Name is required!") String author,
-			@NotEmpty(message = "Thoughts are required!") String thoughts, User user) {
+			@NotEmpty(message = "Thoughts are required!") String thoughts, User user, User borrower) {
 		super();
 		this.title = title;
 		this.author = author;
 		this.thoughts = thoughts;
 		this.user = user;
+		this.borrower = borrower;
 	}
 
 
@@ -126,6 +131,18 @@ public class Book {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+
+
+	public User getBorrower() {
+		return borrower;
+	}
+
+
+
+	public void setBorrower(User borrower) {
+		this.borrower = borrower;
 	}
 	
 	

@@ -8,13 +8,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import com.smart.bookclub.models.Book;
+import com.smart.bookclub.models.User;
 import com.smart.bookclub.repositories.BookRepository;
+import com.smart.bookclub.repositories.UserRepository;
 
 @Service
 public class BookService {
 
 	@Autowired
 	private BookRepository bookRepo;
+
+	@Autowired
+	private UserRepository userRepo;
 
 	public Book createBook(Book newBook, BindingResult result) {
 		return bookRepo.save(newBook);
@@ -34,12 +39,40 @@ public class BookService {
 	}
 
 	public Book updateBook(Long id, Book book) {
-		
+
 		Book updatedBook = bookRepo.findById(id).get();
 
+//		Long borrowerId = book.getBorrower().getId();
+//		Optional<User> borrower = userRepo.findById(borrowerId);
+		
 		updatedBook.setTitle(book.getTitle());
 		updatedBook.setAuthor(book.getAuthor());
 		updatedBook.setThoughts(book.getThoughts());
+//		updatedBook.setBorrower(book.getBorrower());
+
+		return bookRepo.save(book);
+	}
+
+	public void deleteBook(Long id) {
+		Book bookToDelete = bookRepo.findById(id).get();
+
+		bookRepo.delete(bookToDelete);
+	}
+
+	public Book borrowBook(Long id, Book book) {
+
+		User borrower = userRepo.findById(id).get();
+
+		book.setBorrower(borrower);
+
+		return bookRepo.save(book);
+	}
+
+	public Book returnBook(Long id, Book book) {
+
+		User originalOwner = book.getUser();
+
+		book.setBorrower(originalOwner);
 
 		return bookRepo.save(book);
 	}

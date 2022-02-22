@@ -83,7 +83,7 @@ public class ProjectController {
 	}
 
 	@GetMapping("/projects/{id}")
-	public String viewProject(@PathVariable("id") Long projectId, HttpSession session, Model model, BindingResult result) {
+	public String viewProject(@PathVariable("id") Long projectId, HttpSession session, Model model) {
 
 		Project project = projectServ.findProject(projectId);
 
@@ -95,34 +95,42 @@ public class ProjectController {
 
 	@DeleteMapping("/projects/{id}")
 	public String deleteProject(@PathVariable("id") Long projectId, HttpSession session, Model model) {
-		
+
 		projectServ.deleteProject(projectId);
-		
+
 		return "redirect:/dashboard";
 	}
 
-	
 	@GetMapping("/projects/edit/{id}")
 	public String editProject(@PathVariable("id") Long projectId, HttpSession session, Model model) {
-		
+
 		Project project = projectServ.findProject(projectId);
-		
+
 		model.addAttribute("project", project);
-		
-		
+
 		return "editproject.jsp";
 	}
-	
-	
+
 	@PutMapping("/projects/edit/{id}")
-	public String updateProject(@PathVariable("id") Long projectId, HttpSession session, Model model, @Valid @ModelAttribute("project") Project updatedProject, BindingResult result) {
+	public String updateProject(@PathVariable("id") Long projectId, HttpSession session, Model model,
+			@Valid @ModelAttribute("project") Project updatedProject, BindingResult result) {
 		if (result.hasErrors()) {
 			return "editproject.jsp";
 		} else {
-//			System.out.println(book.getId());
 			projectServ.updateProject(projectId, updatedProject);
 			return "redirect:/dashboard";
 		}
+
+	}
+	
+	@GetMapping("/projects/tasks/{id}")
+	public String getProjectTasks(@PathVariable("id") Long projectId, Model model) {
 		
+		Project project = projectServ.findProject(projectId);
+
+		model.addAttribute("project", project);
+		
+	
+		return "projectTasks.jsp";
 	}
 }

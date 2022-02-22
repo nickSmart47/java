@@ -3,7 +3,6 @@ package com.smart.projectmanager.models;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -58,6 +57,9 @@ public class User {
 	
 	@OneToMany(mappedBy="leader", fetch = FetchType.LAZY)
 	private List<Project> projectsLeading;
+	
+	@OneToMany(mappedBy="creator", fetch = FetchType.LAZY)
+	private List<Task> tasks;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(

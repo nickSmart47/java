@@ -31,7 +31,7 @@
 		</div>
 		<div class="d-flex justify-content-between">
 			<h3>All Projects </h3>
-			<a href="/projects/new" class = "btn btn-success">Add new Project</a>
+			<a href="/projects/new" class = "btn btn-primary">Add new Project</a>
 		</div>
 		<table class="table mt-3 table-dark">
 			<tr class="table-dark">

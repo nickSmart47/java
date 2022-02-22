@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -47,6 +48,9 @@ public class Project {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="leader_id")
 	private User leader;
+	
+	@OneToMany(mappedBy="projectTasks", fetch = FetchType.LAZY)
+	private List<Task> tasks;
 
 	@Column(updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")

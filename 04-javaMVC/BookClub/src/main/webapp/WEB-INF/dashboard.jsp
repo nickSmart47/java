@@ -106,7 +106,7 @@
 							</table>
 
 
-							<h3>Books Currently Borrowed</h3>
+							<h3>Books Currently Borrowed by others...</h3>
 							<table class="table mt-3">
 								<tr class="table-info">
 									<th>Id</th>
@@ -118,7 +118,7 @@
 									</tr>
 									<c:forEach items="${books}" var="book">
 										<tr>
-										<c:if test="${book.borrower.getId() != null}">
+										<c:if test="${(book.borrower.getId() != null) && (book.borrower.getId() != loggedInUserID)}">
 											
 											<td>${book.id}</td>
 											<td><a href="/books/${book.id}">${book.title}</a></td>

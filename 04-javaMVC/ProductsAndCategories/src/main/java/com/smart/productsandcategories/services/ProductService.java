@@ -57,7 +57,7 @@ public class ProductService {
 		productRepo.delete(productToDelete);
 	}
 	
-	public List<Product> findCategoriesProductNotIn(Category c){
+	public List<Product> findProductsNotInCategory(Category c){
 		return this.productRepo.findByCategoriesNotContaining(c);
 	}
 }

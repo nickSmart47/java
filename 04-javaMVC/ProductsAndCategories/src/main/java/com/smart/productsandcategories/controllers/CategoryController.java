@@ -59,7 +59,7 @@ public class CategoryController {
 		
 		model.addAttribute("products", products);
 		
-		List<Category> productsNotInCategory = categoryServ.findProductsNotInCategory(product);
+		List<Product> productsNotInCategory = productServ.findProductsNotInCategory(category);
 		
 		model.addAttribute("productsNotInCategory",productsNotInCategory);
 		

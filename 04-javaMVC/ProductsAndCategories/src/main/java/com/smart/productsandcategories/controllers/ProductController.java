@@ -59,7 +59,7 @@ public class ProductController {
 		
 		model.addAttribute("product", product);
 		
-		List<Product> nonMemberCategories = this.productServ.findCategoriesProductNotIn(category);
+		List<Category> nonMemberCategories = categoryServ.findNonMemberCategories(product);
 		model.addAttribute("nonMemberCategories", nonMemberCategories);
 		
 		return "viewproduct.jsp";

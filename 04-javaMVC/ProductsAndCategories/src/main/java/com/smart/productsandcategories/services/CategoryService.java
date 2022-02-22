@@ -51,7 +51,7 @@ public class CategoryService {
 		return categoryRepo.save(updatedCategory);
 	}
 	
-	public List<Category> findProductsNotInCategory(Product p){
+	public List<Category> findNonMemberCategories(Product p){
 		return this.categoryRepo.findByProductsNotContaining(p);
 	}
 }

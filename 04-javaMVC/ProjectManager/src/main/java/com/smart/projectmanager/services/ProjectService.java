@@ -8,14 +8,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import com.smart.projectmanager.models.Project;
+import com.smart.projectmanager.models.Task;
 import com.smart.projectmanager.models.User;
 import com.smart.projectmanager.repositories.ProjectRepository;
+import com.smart.projectmanager.repositories.TaskRepository;
 
 @Service
 public class ProjectService {
 
 	@Autowired
 	private ProjectRepository projectRepo;
+	
+	@Autowired
+	private TaskRepository taskRepo;
 	
 	public Project createProject(Project newProject, BindingResult result) {
 		return projectRepo.save(newProject);
@@ -53,6 +58,30 @@ public class ProjectService {
 		updatedProject.setDueDate(project.getDueDate());
 		
 		return projectRepo.save(updatedProject);
+	}
+	
+	public Project addTask(Long id, Task task) {
+		
+		Project project = projectRepo.findById(id).get();
+		
+		List<Task> tasks = project.getTasks();
+		
+		tasks.add(task);
+		
+		project.setTasks(tasks);
+		
+		
+		return projectRepo.save(project);
+	}
+	
+	public Task createTask(String ticket, User creator, Project project) {
+		
+		Task newTask = new Task();
+		newTask.setTicket(ticket);
+		newTask.setCreator(creator);
+		newTask.setProjectTasks(project);
+		
+		return taskRepo.save(newTask);
 	}
 	
 }

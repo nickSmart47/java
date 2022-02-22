@@ -39,14 +39,14 @@
               </div>
               <c:if test="${project.leader.getId() == loggedInUserID}">
                 <div class = "d-flex justify-content-between">
-                  <a href="/projects/tasks/${project.id}">See Tasks</a>
                   <a href="/projects/edit/${project.id}" class="btn btn-success w-50"> Edit</a>
                   <form action="/projects/${project.id}" method="post">
                     <input type="hidden" name="_method" value="delete"> <input
-                      type="submit" value="Delete" class="btn btn-danger">
+                    type="submit" value="Delete" class="btn btn-danger">
                   </form>
                 </div>
               </c:if>
+              <a href="/projects/tasks/${project.id}">See Tasks</a>
             </div> <!-- End of Container -->
           </body>
 </html>

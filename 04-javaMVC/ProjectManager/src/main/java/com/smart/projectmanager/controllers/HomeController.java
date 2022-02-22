@@ -20,14 +20,13 @@ import com.smart.projectmanager.models.User;
 import com.smart.projectmanager.services.ProjectService;
 import com.smart.projectmanager.services.UserService;
 
-
 @Controller
 public class HomeController {
 
 	// Add once service is implemented:
 	@Autowired
 	private UserService userServ;
-	
+
 	@Autowired
 	private ProjectService projectServ;
 
@@ -87,35 +86,39 @@ public class HomeController {
 
 	@RequestMapping("/dashboard")
 	public String dashboard(HttpSession session, Model model) {
-		
+
 		Long loggedInUserID = (Long) session.getAttribute("loggedInUserID");
-		
+
 		System.out.println(loggedInUserID);
-		
+
 		if (loggedInUserID == null) {
-			
+
 			return "redirect:/";
 		}
-		User loggedInUser = userServ.findOneUser(loggedInUserID);
-		
-		model.addAttribute("user", loggedInUser);
-		
-		List<Project> allProjects = projectServ.allProjects();
-		
-		model.addAttribute("projects", allProjects);
-		
-		List<Project> loggedInUserProjects = loggedInUser.getProjects();
-		
-		model.addAttribute("loggedInUserProjects",loggedInUserProjects);
-		
-		List<Project> projectsUserNotIn = projectServ.findProjectsUserNotIn(loggedInUser);
-		
-		model.addAttribute("projectsUserNotIn", projectsUserNotIn);
-		
-		return "dashboard.jsp";
+
+		else {
+
+			User loggedInUser = userServ.findOneUser(loggedInUserID);
+
+			model.addAttribute("user", loggedInUser);
+
+			List<Project> allProjects = projectServ.allProjects();
+
+			model.addAttribute("projects", allProjects);
+
+			List<Project> loggedInUserProjects = loggedInUser.getProjects();
+
+			model.addAttribute("loggedInUserProjects", loggedInUserProjects);
+
+			List<Project> projectsUserNotIn = projectServ.findProjectsUserNotIn(loggedInUser);
+
+			model.addAttribute("projectsUserNotIn", projectsUserNotIn);
+
+			return "dashboard.jsp";
+		}
 
 	}
-	
+
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();

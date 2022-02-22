@@ -31,7 +31,7 @@
               <br>
               <h3>Project Lead: ${project.leader.getUserName()}</h3>
               <br>
-              <form action="/projects/tasks/{id}" method="put">
+              <form action="/projects/tasks/${id}" method="post">
                 <div class="form-group d-flex mt-2 align-items-center mt-3">
                   <label for="task">Add a task ticket for the team:</label>
                   <textarea name="task" class="form-control" id="" cols="20" rows="7"></textarea>
@@ -46,7 +46,8 @@
                 <ul class="list-group">
                   <c:forEach var="task" items="${tasks}">
                     <li class="list-group-item">
-                      <c:out value="${task}"></c:out>
+                      <p>Added by ${task.creator.userName} at ${task.getFormattedCreatedAt()}</p>
+                      <p>${task.ticket}</p>
                     </li>
                   </c:forEach>
                 </ul>

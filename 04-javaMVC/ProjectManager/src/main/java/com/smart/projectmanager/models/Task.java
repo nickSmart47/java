@@ -1,5 +1,6 @@
 package com.smart.projectmanager.models;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -106,5 +107,23 @@ public class Task {
 	protected void onUpdate() {
 		this.updatedAt = new Date();
 	}
+
+
+	public Project getProjectTasks() {
+		return projectTasks;
+	}
+
+
+	public void setProjectTasks(Project projectTasks) {
+		this.projectTasks = projectTasks;
+	}
+	
+	public String getFormattedCreatedAt() {
+		Date date = this.getCreatedAt();
+		String dateDisplay = new SimpleDateFormat("hh:mm aa MMMM d").format(date);
+		return dateDisplay;
+	}
+	
+	
 	
 }

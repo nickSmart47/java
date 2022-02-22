@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.smart.projectmanager.models.Project;
+import com.smart.projectmanager.models.Task;
 import com.smart.projectmanager.models.User;
 import com.smart.projectmanager.services.ProjectService;
 import com.smart.projectmanager.services.UserService;
@@ -130,7 +132,23 @@ public class ProjectController {
 
 		model.addAttribute("project", project);
 		
+		List<Task> tasks = project.getTasks();
+		
+		model.addAttribute("tasks",tasks);
 	
 		return "projectTasks.jsp";
+	}
+	
+	
+	@PostMapping("/projects/tasks/{id}")
+	public String addTaskToProject(@PathVariable("id") Long projectId, Model model, @RequestParam("task") String ticket, HttpSession session) {
+		
+		Project project = projectServ.findProject(projectId);
+		
+		User creator = userServ.findOneUser((Long) session.getAttribute("loggedInUserID"));
+		
+		projectServ.createTask(ticket, creator, project);
+		
+		return String.format("redirect:/projects/tasks/%s", projectId);
 	}
 }

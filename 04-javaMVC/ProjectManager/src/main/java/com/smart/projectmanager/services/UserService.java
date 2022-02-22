@@ -1,5 +1,6 @@
 package com.smart.projectmanager.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -8,7 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import com.smart.projectmanager.models.LoginUser;
+import com.smart.projectmanager.models.Project;
 import com.smart.projectmanager.models.User;
+import com.smart.projectmanager.repositories.ProjectRepository;
 import com.smart.projectmanager.repositories.UserRepository;
 
 @Service
@@ -16,6 +19,9 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepo;
+	
+	@Autowired
+	private ProjectRepository projectRepo;
 
 	// This method will be called from the controller
 	// whenever a user submits a registration form.
@@ -88,6 +94,30 @@ public class UserService {
 
 	public User findOneUser(Long id) {
 		return this.userRepo.findById(id).orElse(null);
+	}
+	
+	public User addProject(Long projectId, long userId) {
+		User user = userRepo.findById(userId).get();
+		
+		Project project = projectRepo.findById(projectId).get();
+		
+		List<Project> userProjects = user.getProjects();
+		
+		userProjects.add(project);
+		
+		return userRepo.save(user);
+	}
+	
+	public User removeProject(Long projectId, long userId) {
+		User user = userRepo.findById(userId).get();
+		
+		Project project = projectRepo.findById(projectId).get();
+		
+		List<Project> userProjects = user.getProjects();
+		
+		userProjects.remove(project);
+		
+		return userRepo.save(user);
 	}
 
 }

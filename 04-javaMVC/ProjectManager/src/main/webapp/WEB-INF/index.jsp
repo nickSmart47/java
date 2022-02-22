@@ -14,7 +14,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Login and Registration</title>
+<title>Project Manager</title>
 <!-- Bootstrap -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -29,12 +29,12 @@
 		<!-- Beginning of Container -->
 		<div
 			class="d-flex flex-column justify-content-center align-items-center gap-2">
-			<h1>Welcome!</h1>
-			<h2>Join our growing community</h2>
+			<h1>Project Manager</h1>
+			<p>A place for teams to manage projects.</p>
 		</div>
 		<div
-			class="d-flex justify-content-center align-items-center gap-5 mt-3">
-			<div>
+			class="d-flex justify-content-center gap-5 mt-3">
+			<div class = "bg-light p-5">
 				<h3>Register</h3>
 				<form:form class="form d-flex flex-column gap-3" action="/register"
 					method="post" modelAttribute="newUser">
@@ -65,7 +65,7 @@
 					<input class="w-50 btn btn-primary" type="submit" value="Submit" />
 				</form:form>
 			</div>
-			<div>
+			<div class = "bg-light p-5">
 				<h3>Log In</h3>
 				<form:form class="form d-flex flex-column gap-3" action="/login"
 					method="post" modelAttribute="newLogin">

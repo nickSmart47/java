@@ -1,5 +1,7 @@
 package com.smart.projectmanager.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -13,11 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.smart.projectmanager.models.LoginUser;
+import com.smart.projectmanager.models.Project;
 import com.smart.projectmanager.models.User;
-import com.smart.projectmanager.repositories.UserRepository;
+import com.smart.projectmanager.services.ProjectService;
 import com.smart.projectmanager.services.UserService;
 
-//.. don't forget to inlcude all your imports! ..
 
 @Controller
 public class HomeController {
@@ -25,6 +27,9 @@ public class HomeController {
 	// Add once service is implemented:
 	@Autowired
 	private UserService userServ;
+	
+	@Autowired
+	private ProjectService projectServ;
 
 	@GetMapping("/")
 	public String index(Model model, @ModelAttribute("newUser") User newUser,
@@ -56,7 +61,7 @@ public class HomeController {
 		// TO-DO Later: Store their ID from the DB in session,
 		// in other words, log them in.
 		session.setAttribute("loggedInUserID", newUser.getId());
-		return "redirect:/home";
+		return "redirect:/dashboard";
 	}
 
 	@PostMapping("/login")
@@ -77,13 +82,15 @@ public class HomeController {
 		// TO-DO Later: Store their ID from the DB in session,
 		// in other words, log them in.
 		session.setAttribute("loggedInUserID", user.getId());
-		return "redirect:/home";
+		return "redirect:/dashboard";
 	}
 
-	@RequestMapping("/home")
+	@RequestMapping("/dashboard")
 	public String dashboard(HttpSession session, Model model) {
 		
 		Long loggedInUserID = (Long) session.getAttribute("loggedInUserID");
+		
+		System.out.println(loggedInUserID);
 		
 		if (loggedInUserID == null) {
 			
@@ -93,6 +100,17 @@ public class HomeController {
 		
 		model.addAttribute("user", loggedInUser);
 		
+		List<Project> allProjects = projectServ.allProjects();
+		
+		model.addAttribute("projects", allProjects);
+		
+		List<Project> loggedInUserProjects = loggedInUser.getProjects();
+		
+		model.addAttribute("loggedInUserProjects",loggedInUserProjects);
+		
+		List<Project> projectsUserNotIn = projectServ.findProjectsUserNotIn(loggedInUser);
+		
+		model.addAttribute("projectsUserNotIn", projectsUserNotIn);
 		
 		return "dashboard.jsp";
 

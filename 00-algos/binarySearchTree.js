@@ -25,13 +25,13 @@ class BST {
         let current = this.root;
 
         while (current != null) {
-            console.log("current is", current);
+            // console.log("current is", current);
             if (newNode.value > current.value) {
                 if (current.right == null) {
                     current.right = newNode;
                     return this;
                 }
-                else{
+                else {
                     current = current.right;
                 }
 
@@ -41,7 +41,7 @@ class BST {
                     current.left = newNode;
                     return this;
                 }
-                else{
+                else {
                     current = current.left;
                 }
             }
@@ -52,15 +52,41 @@ class BST {
 
     }
 
+    findMin() {
+        let current = this.root;
+        while (current.left != null) {
+            current = current.left;
+        }
+        return current.value;
+    }
+
+    findMax() {
+        let current = this.root;
+        while(current.right != null){
+            current = current.right;
+        }
+        return current.value;
+    }
+
+    // findMax() {
+    //     return this.right?this.right.findMax():this.value;
+    // }
+    // findMin() {
+    //     return this.left?this.left.findMin():this.value;
+    // }
+
 
 }
 
 
 let bst1 = new BST()
 
-bst1.insert(5).insert(8).insert(2).insert(4).insert(76).insert(-2)
+bst1.insert(5).insert(8).insert(2).insert(4).insert(76).insert(-2).insert(-23).insert(108)
 
 
 
 
-console.log(bst1)
+console.log(bst1);
+console.log(bst1.findMin());
+console.log(bst1.findMax());
+

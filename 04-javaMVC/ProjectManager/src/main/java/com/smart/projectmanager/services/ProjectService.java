@@ -66,7 +66,7 @@ public class ProjectService {
 		
 		List<Task> tasks = project.getTasks();
 		
-		tasks.add(task);
+		tasks.add(0, task);
 		
 		project.setTasks(tasks);
 		

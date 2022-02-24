@@ -109,8 +109,19 @@ public class ProjectController {
 		Project project = projectServ.findProject(projectId);
 
 		model.addAttribute("project", project);
+		
+		Long loggedInUserID = (Long) session.getAttribute("loggedInUserID");
+		
+		User user = userServ.findOneUser(loggedInUserID);
+		
+		if (user == project.getLeader()) {
+			return "editproject.jsp";
+			
+		}
+		else {
+			return "redirect:/dashboard";
+		}
 
-		return "editproject.jsp";
 	}
 
 	@PutMapping("/projects/edit/{id}")

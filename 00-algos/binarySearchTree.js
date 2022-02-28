@@ -62,7 +62,7 @@ class BST {
 
     findMax() {
         let current = this.root;
-        while(current.right != null){
+        while (current.right != null) {
             current = current.right;
         }
         return current.value;
@@ -75,6 +75,24 @@ class BST {
     //     return this.left?this.left.findMin():this.value;
     // }
 
+    contains(valToFind) {
+        let valueFound = false;
+        let current = this.root;
+
+        while (current != null) {
+            if (current.value == valToFind) {
+                valueFound = true;
+                break;
+            }
+            else if (valToFind > current.value) {
+                current = current.right;
+            }
+            else {
+                current = current.left;
+            }
+        }
+        return valueFound;
+    }
 
 }
 
@@ -87,6 +105,8 @@ bst1.insert(5).insert(8).insert(2).insert(4).insert(76).insert(-2).insert(-23).i
 
 
 console.log(bst1);
-console.log(bst1.findMin());
-console.log(bst1.findMax());
+// console.log(bst1.findMin());
+// console.log(bst1.findMax());
+
+console.log(bst1.contains(108))
 

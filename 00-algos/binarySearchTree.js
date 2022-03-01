@@ -94,6 +94,24 @@ class BST {
         return valueFound;
     }
 
+    getHeight(currentNode = this.root, count = 0) {
+
+        //base case is when we know exactly what to return
+        if (currentNode == null) {
+            return count;
+        } else {
+            //recursively go through all the nodes
+            let max = Math.max(this.getHeight(currentNode.left, count + 1), this.getHeight(currentNode.right, count + 1));
+            return max;
+        }
+    }
+
+    maxHeight(n=this.root) {
+        //one line solution!
+        return n == null ? 0 : 1 + Math.max(this.maxHeight(n.left), this.maxHeight(n.right));
+
+    }
+
 }
 
 
@@ -108,5 +126,8 @@ console.log(bst1);
 // console.log(bst1.findMin());
 // console.log(bst1.findMax());
 
-console.log(bst1.contains(108))
+// console.log(bst1.contains(108))
+console.log(bst1.maxHeight())
+console.log(bst1.getHeight())
+
 
